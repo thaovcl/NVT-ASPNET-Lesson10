@@ -1,0 +1,82 @@
+﻿@model NVTLesson10.Models.NvtSinhVien
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>NvtSinhVien</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NvtHoSV)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NvtHoSV)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NvtTenSV)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NvtTenSV)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NvtPhai)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NvtPhai)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NvtNgaySinh)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NvtNgaySinh)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NvtNoiSinh)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NvtNoiSinh)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NvtHocBong)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NvtHocBong)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NvtDiemTrungBinh)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NvtDiemTrungBinh)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NvtKhoa.NvtTenKH)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NvtKhoa.NvtTenKH)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.NvtMaSV }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

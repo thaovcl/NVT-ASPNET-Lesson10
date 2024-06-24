@@ -1,0 +1,272 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="NVTK22CNT1Lesson10Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="NvtKetQua">
+          <Key>
+            <PropertyRef Name="NvtMaSV" />
+            <PropertyRef Name="NvtMaMH" />
+          </Key>
+          <Property Name="NvtMaSV" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="NvtMaMH" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="NvtDiem" Type="decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="NvtKhoa">
+          <Key>
+            <PropertyRef Name="NvtMaKH" />
+          </Key>
+          <Property Name="NvtMaKH" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="NvtTenKH" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="NvtMonHoc">
+          <Key>
+            <PropertyRef Name="NvtMaMH" />
+          </Key>
+          <Property Name="NvtMaMH" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="NvtTenMH" Type="nvarchar" MaxLength="50" />
+          <Property Name="NvtSoTiet" Type="int" />
+        </EntityType>
+        <EntityType Name="NvtSinhVien">
+          <Key>
+            <PropertyRef Name="NvtMaSV" />
+          </Key>
+          <Property Name="NvtMaSV" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="NvtHoSV" Type="nvarchar" MaxLength="50" />
+          <Property Name="NvtTenSV" Type="nvarchar" MaxLength="50" />
+          <Property Name="NvtPhai" Type="bit" />
+          <Property Name="NvtNgaySinh" Type="date" />
+          <Property Name="NvtNoiSinh" Type="nvarchar" MaxLength="50" />
+          <Property Name="NvtMaKH" Type="nchar" MaxLength="10" />
+          <Property Name="NvtHocBong" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="NvtDiemTrungBinh" Type="decimal" Precision="3" Scale="2" />
+        </EntityType>
+        <Association Name="FK_NvtKetQua_NvtMonHoc">
+          <End Role="NvtMonHoc" Type="Self.NvtMonHoc" Multiplicity="1" />
+          <End Role="NvtKetQua" Type="Self.NvtKetQua" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NvtMonHoc">
+              <PropertyRef Name="NvtMaMH" />
+            </Principal>
+            <Dependent Role="NvtKetQua">
+              <PropertyRef Name="NvtMaMH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NvtKetQua_NvtSinhVien">
+          <End Role="NvtSinhVien" Type="Self.NvtSinhVien" Multiplicity="1" />
+          <End Role="NvtKetQua" Type="Self.NvtKetQua" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NvtSinhVien">
+              <PropertyRef Name="NvtMaSV" />
+            </Principal>
+            <Dependent Role="NvtKetQua">
+              <PropertyRef Name="NvtMaSV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NvtSinhVien_NvtKhoa1">
+          <End Role="NvtKhoa" Type="Self.NvtKhoa" Multiplicity="0..1" />
+          <End Role="NvtSinhVien" Type="Self.NvtSinhVien" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NvtKhoa">
+              <PropertyRef Name="NvtMaKH" />
+            </Principal>
+            <Dependent Role="NvtSinhVien">
+              <PropertyRef Name="NvtMaKH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="NVTK22CNT1Lesson10ModelStoreContainer">
+          <EntitySet Name="NvtKetQua" EntityType="Self.NvtKetQua" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NvtKhoa" EntityType="Self.NvtKhoa" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NvtMonHoc" EntityType="Self.NvtMonHoc" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NvtSinhVien" EntityType="Self.NvtSinhVien" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_NvtKetQua_NvtMonHoc" Association="Self.FK_NvtKetQua_NvtMonHoc">
+            <End Role="NvtMonHoc" EntitySet="NvtMonHoc" />
+            <End Role="NvtKetQua" EntitySet="NvtKetQua" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NvtKetQua_NvtSinhVien" Association="Self.FK_NvtKetQua_NvtSinhVien">
+            <End Role="NvtSinhVien" EntitySet="NvtSinhVien" />
+            <End Role="NvtKetQua" EntitySet="NvtKetQua" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NvtSinhVien_NvtKhoa1" Association="Self.FK_NvtSinhVien_NvtKhoa1">
+            <End Role="NvtKhoa" EntitySet="NvtKhoa" />
+            <End Role="NvtSinhVien" EntitySet="NvtSinhVien" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="NVTK22CNT1Lesson10Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="NvtKetQua">
+          <Key>
+            <PropertyRef Name="NvtMaSV" />
+            <PropertyRef Name="NvtMaMH" />
+          </Key>
+          <Property Name="NvtMaSV" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="NvtMaMH" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="NvtDiem" Type="Decimal" Precision="10" Scale="2" />
+          <NavigationProperty Name="NvtMonHoc" Relationship="Self.FK_NvtKetQua_NvtMonHoc" FromRole="NvtKetQua" ToRole="NvtMonHoc" />
+          <NavigationProperty Name="NvtSinhVien" Relationship="Self.FK_NvtKetQua_NvtSinhVien" FromRole="NvtKetQua" ToRole="NvtSinhVien" />
+        </EntityType>
+        <EntityType Name="NvtKhoa">
+          <Key>
+            <PropertyRef Name="NvtMaKH" />
+          </Key>
+          <Property Name="NvtMaKH" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="NvtTenKH" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="NvtSinhViens" Relationship="Self.FK_NvtSinhVien_NvtKhoa1" FromRole="NvtKhoa" ToRole="NvtSinhVien" />
+        </EntityType>
+        <EntityType Name="NvtMonHoc">
+          <Key>
+            <PropertyRef Name="NvtMaMH" />
+          </Key>
+          <Property Name="NvtMaMH" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="NvtTenMH" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NvtSoTiet" Type="Int32" />
+          <NavigationProperty Name="NvtKetQuas" Relationship="Self.FK_NvtKetQua_NvtMonHoc" FromRole="NvtMonHoc" ToRole="NvtKetQua" />
+        </EntityType>
+        <EntityType Name="NvtSinhVien">
+          <Key>
+            <PropertyRef Name="NvtMaSV" />
+          </Key>
+          <Property Name="NvtMaSV" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="NvtHoSV" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NvtTenSV" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NvtPhai" Type="Boolean" />
+          <Property Name="NvtNgaySinh" Type="DateTime" Precision="0" />
+          <Property Name="NvtNoiSinh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NvtMaKH" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="NvtHocBong" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="NvtDiemTrungBinh" Type="Decimal" Precision="3" Scale="2" />
+          <NavigationProperty Name="NvtKetQuas" Relationship="Self.FK_NvtKetQua_NvtSinhVien" FromRole="NvtSinhVien" ToRole="NvtKetQua" />
+          <NavigationProperty Name="NvtKhoa" Relationship="Self.FK_NvtSinhVien_NvtKhoa1" FromRole="NvtSinhVien" ToRole="NvtKhoa" />
+        </EntityType>
+        <Association Name="FK_NvtKetQua_NvtMonHoc">
+          <End Role="NvtMonHoc" Type="Self.NvtMonHoc" Multiplicity="1" />
+          <End Role="NvtKetQua" Type="Self.NvtKetQua" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NvtMonHoc">
+              <PropertyRef Name="NvtMaMH" />
+            </Principal>
+            <Dependent Role="NvtKetQua">
+              <PropertyRef Name="NvtMaMH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NvtKetQua_NvtSinhVien">
+          <End Role="NvtSinhVien" Type="Self.NvtSinhVien" Multiplicity="1" />
+          <End Role="NvtKetQua" Type="Self.NvtKetQua" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NvtSinhVien">
+              <PropertyRef Name="NvtMaSV" />
+            </Principal>
+            <Dependent Role="NvtKetQua">
+              <PropertyRef Name="NvtMaSV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NvtSinhVien_NvtKhoa1">
+          <End Role="NvtKhoa" Type="Self.NvtKhoa" Multiplicity="0..1" />
+          <End Role="NvtSinhVien" Type="Self.NvtSinhVien" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NvtKhoa">
+              <PropertyRef Name="NvtMaKH" />
+            </Principal>
+            <Dependent Role="NvtSinhVien">
+              <PropertyRef Name="NvtMaKH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="NVTK22CNT1Lesson10Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="NvtKetQuas" EntityType="Self.NvtKetQua" />
+          <EntitySet Name="NvtKhoas" EntityType="Self.NvtKhoa" />
+          <EntitySet Name="NvtMonHocs" EntityType="Self.NvtMonHoc" />
+          <EntitySet Name="NvtSinhViens" EntityType="Self.NvtSinhVien" />
+          <AssociationSet Name="FK_NvtKetQua_NvtMonHoc" Association="Self.FK_NvtKetQua_NvtMonHoc">
+            <End Role="NvtMonHoc" EntitySet="NvtMonHocs" />
+            <End Role="NvtKetQua" EntitySet="NvtKetQuas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NvtKetQua_NvtSinhVien" Association="Self.FK_NvtKetQua_NvtSinhVien">
+            <End Role="NvtSinhVien" EntitySet="NvtSinhViens" />
+            <End Role="NvtKetQua" EntitySet="NvtKetQuas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NvtSinhVien_NvtKhoa1" Association="Self.FK_NvtSinhVien_NvtKhoa1">
+            <End Role="NvtKhoa" EntitySet="NvtKhoas" />
+            <End Role="NvtSinhVien" EntitySet="NvtSinhViens" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="NVTK22CNT1Lesson10ModelStoreContainer" CdmEntityContainer="NVTK22CNT1Lesson10Entities">
+          <EntitySetMapping Name="NvtKetQuas">
+            <EntityTypeMapping TypeName="NVTK22CNT1Lesson10Model.NvtKetQua">
+              <MappingFragment StoreEntitySet="NvtKetQua">
+                <ScalarProperty Name="NvtMaSV" ColumnName="NvtMaSV" />
+                <ScalarProperty Name="NvtMaMH" ColumnName="NvtMaMH" />
+                <ScalarProperty Name="NvtDiem" ColumnName="NvtDiem" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NvtKhoas">
+            <EntityTypeMapping TypeName="NVTK22CNT1Lesson10Model.NvtKhoa">
+              <MappingFragment StoreEntitySet="NvtKhoa">
+                <ScalarProperty Name="NvtMaKH" ColumnName="NvtMaKH" />
+                <ScalarProperty Name="NvtTenKH" ColumnName="NvtTenKH" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NvtMonHocs">
+            <EntityTypeMapping TypeName="NVTK22CNT1Lesson10Model.NvtMonHoc">
+              <MappingFragment StoreEntitySet="NvtMonHoc">
+                <ScalarProperty Name="NvtMaMH" ColumnName="NvtMaMH" />
+                <ScalarProperty Name="NvtTenMH" ColumnName="NvtTenMH" />
+                <ScalarProperty Name="NvtSoTiet" ColumnName="NvtSoTiet" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NvtSinhViens">
+            <EntityTypeMapping TypeName="NVTK22CNT1Lesson10Model.NvtSinhVien">
+              <MappingFragment StoreEntitySet="NvtSinhVien">
+                <ScalarProperty Name="NvtMaSV" ColumnName="NvtMaSV" />
+                <ScalarProperty Name="NvtHoSV" ColumnName="NvtHoSV" />
+                <ScalarProperty Name="NvtTenSV" ColumnName="NvtTenSV" />
+                <ScalarProperty Name="NvtPhai" ColumnName="NvtPhai" />
+                <ScalarProperty Name="NvtNgaySinh" ColumnName="NvtNgaySinh" />
+                <ScalarProperty Name="NvtNoiSinh" ColumnName="NvtNoiSinh" />
+                <ScalarProperty Name="NvtMaKH" ColumnName="NvtMaKH" />
+                <ScalarProperty Name="NvtHocBong" ColumnName="NvtHocBong" />
+                <ScalarProperty Name="NvtDiemTrungBinh" ColumnName="NvtDiemTrungBinh" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

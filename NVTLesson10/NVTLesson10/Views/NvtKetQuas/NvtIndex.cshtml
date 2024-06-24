@@ -1,0 +1,45 @@
+﻿@model IEnumerable<NVTLesson10.Models.NvtKetQua>
+
+@{
+    ViewBag.Title = "NvtIndex";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("NVT: Create New", "NvtCreate")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NvtDiem)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NvtMonHoc.NvtTenMH)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NvtSinhVien.NvtHoSV)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NvtDiem)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NvtMonHoc.NvtTenMH)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NvtSinhVien.NvtHoSV)
+        </td>
+        <td>
+            @Html.ActionLink("NVT: Edit", "NvtEdit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("NVT: Details", "NvtDetails", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("NVT: Delete", "NvtDelete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

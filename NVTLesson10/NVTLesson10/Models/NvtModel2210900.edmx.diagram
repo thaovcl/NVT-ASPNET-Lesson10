@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="9bb08c1344c64cf2b7701c01d29830bc" Name="Diagram1">
+        <EntityTypeShape EntityType="NVTK22CNT1Lesson10Model.NvtKetQua" Width="1.5" PointX="5.25" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="NVTK22CNT1Lesson10Model.NvtKhoa" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NVTK22CNT1Lesson10Model.NvtMonHoc" Width="1.5" PointX="3" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="NVTK22CNT1Lesson10Model.NvtSinhVien" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="NVTK22CNT1Lesson10Model.FK_NvtKetQua_NvtMonHoc" ManuallyRouted="false" />
+        <AssociationConnector Association="NVTK22CNT1Lesson10Model.FK_NvtKetQua_NvtSinhVien" ManuallyRouted="false" />
+        <AssociationConnector Association="NVTK22CNT1Lesson10Model.FK_NvtSinhVien_NvtKhoa1" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

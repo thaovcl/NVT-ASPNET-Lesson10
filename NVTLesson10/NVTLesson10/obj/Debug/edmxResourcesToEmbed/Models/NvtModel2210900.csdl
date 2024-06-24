@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="NVTK22CNT1Lesson10Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="NvtKetQua">
+    <Key>
+      <PropertyRef Name="NvtMaSV" />
+      <PropertyRef Name="NvtMaMH" />
+    </Key>
+    <Property Name="NvtMaSV" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="NvtMaMH" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="NvtDiem" Type="Decimal" Precision="10" Scale="2" />
+    <NavigationProperty Name="NvtMonHoc" Relationship="Self.FK_NvtKetQua_NvtMonHoc" FromRole="NvtKetQua" ToRole="NvtMonHoc" />
+    <NavigationProperty Name="NvtSinhVien" Relationship="Self.FK_NvtKetQua_NvtSinhVien" FromRole="NvtKetQua" ToRole="NvtSinhVien" />
+  </EntityType>
+  <EntityType Name="NvtKhoa">
+    <Key>
+      <PropertyRef Name="NvtMaKH" />
+    </Key>
+    <Property Name="NvtMaKH" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="NvtTenKH" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="NvtSinhViens" Relationship="Self.FK_NvtSinhVien_NvtKhoa1" FromRole="NvtKhoa" ToRole="NvtSinhVien" />
+  </EntityType>
+  <EntityType Name="NvtMonHoc">
+    <Key>
+      <PropertyRef Name="NvtMaMH" />
+    </Key>
+    <Property Name="NvtMaMH" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="NvtTenMH" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NvtSoTiet" Type="Int32" />
+    <NavigationProperty Name="NvtKetQuas" Relationship="Self.FK_NvtKetQua_NvtMonHoc" FromRole="NvtMonHoc" ToRole="NvtKetQua" />
+  </EntityType>
+  <EntityType Name="NvtSinhVien">
+    <Key>
+      <PropertyRef Name="NvtMaSV" />
+    </Key>
+    <Property Name="NvtMaSV" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="NvtHoSV" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NvtTenSV" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NvtPhai" Type="Boolean" />
+    <Property Name="NvtNgaySinh" Type="DateTime" Precision="0" />
+    <Property Name="NvtNoiSinh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NvtMaKH" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="NvtHocBong" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="NvtDiemTrungBinh" Type="Decimal" Precision="3" Scale="2" />
+    <NavigationProperty Name="NvtKetQuas" Relationship="Self.FK_NvtKetQua_NvtSinhVien" FromRole="NvtSinhVien" ToRole="NvtKetQua" />
+    <NavigationProperty Name="NvtKhoa" Relationship="Self.FK_NvtSinhVien_NvtKhoa1" FromRole="NvtSinhVien" ToRole="NvtKhoa" />
+  </EntityType>
+  <Association Name="FK_NvtKetQua_NvtMonHoc">
+    <End Role="NvtMonHoc" Type="Self.NvtMonHoc" Multiplicity="1" />
+    <End Role="NvtKetQua" Type="Self.NvtKetQua" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NvtMonHoc">
+        <PropertyRef Name="NvtMaMH" />
+      </Principal>
+      <Dependent Role="NvtKetQua">
+        <PropertyRef Name="NvtMaMH" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NvtKetQua_NvtSinhVien">
+    <End Role="NvtSinhVien" Type="Self.NvtSinhVien" Multiplicity="1" />
+    <End Role="NvtKetQua" Type="Self.NvtKetQua" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NvtSinhVien">
+        <PropertyRef Name="NvtMaSV" />
+      </Principal>
+      <Dependent Role="NvtKetQua">
+        <PropertyRef Name="NvtMaSV" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NvtSinhVien_NvtKhoa1">
+    <End Role="NvtKhoa" Type="Self.NvtKhoa" Multiplicity="0..1" />
+    <End Role="NvtSinhVien" Type="Self.NvtSinhVien" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NvtKhoa">
+        <PropertyRef Name="NvtMaKH" />
+      </Principal>
+      <Dependent Role="NvtSinhVien">
+        <PropertyRef Name="NvtMaKH" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="NVTK22CNT1Lesson10Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="NvtKetQuas" EntityType="Self.NvtKetQua" />
+    <EntitySet Name="NvtKhoas" EntityType="Self.NvtKhoa" />
+    <EntitySet Name="NvtMonHocs" EntityType="Self.NvtMonHoc" />
+    <EntitySet Name="NvtSinhViens" EntityType="Self.NvtSinhVien" />
+    <AssociationSet Name="FK_NvtKetQua_NvtMonHoc" Association="Self.FK_NvtKetQua_NvtMonHoc">
+      <End Role="NvtMonHoc" EntitySet="NvtMonHocs" />
+      <End Role="NvtKetQua" EntitySet="NvtKetQuas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NvtKetQua_NvtSinhVien" Association="Self.FK_NvtKetQua_NvtSinhVien">
+      <End Role="NvtSinhVien" EntitySet="NvtSinhViens" />
+      <End Role="NvtKetQua" EntitySet="NvtKetQuas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NvtSinhVien_NvtKhoa1" Association="Self.FK_NvtSinhVien_NvtKhoa1">
+      <End Role="NvtKhoa" EntitySet="NvtKhoas" />
+      <End Role="NvtSinhVien" EntitySet="NvtSinhViens" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

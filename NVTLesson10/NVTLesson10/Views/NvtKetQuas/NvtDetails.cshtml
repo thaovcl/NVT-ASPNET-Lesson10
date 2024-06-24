@@ -1,0 +1,42 @@
+﻿@model NVTLesson10.Models.NvtKetQua
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>NvtKetQua</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NvtDiem)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NvtDiem)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NvtMonHoc.NvtTenMH)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NvtMonHoc.NvtTenMH)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NvtSinhVien.NvtHoSV)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NvtSinhVien.NvtHoSV)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
